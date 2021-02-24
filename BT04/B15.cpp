@@ -7,6 +7,8 @@ int main() {
     cin >> w >> h;
     bool checkRow[w];
     bool nextCheckRow[w];
+    char thisRow[w];
+    char lastRow[w];
     char grid;
     bool escape = false;
     for (int i = 0; i < h; i++)
@@ -14,6 +16,7 @@ int main() {
         for (int j = 0; j < w; j++)
         {
             cin >> grid;
+            thisRow[j] = grid;
             if (i == 0)
             {
                 if (grid == 'Y') checkRow[j] = true;
@@ -21,7 +24,7 @@ int main() {
             }
             else
             {
-                if (grid == 'R') nextCheckRow[j] = false;
+                if (grid == 'R' || lastRow[j] == 'R') nextCheckRow[j] = false;
                 else
                 {
                     int chk1 = j - 1, chk2 = j + 1;
@@ -37,6 +40,13 @@ int main() {
             for (int j = 0; j < w; j++)
             {
                 checkRow[j] = nextCheckRow[j];
+            }
+        }
+        if (i != w - 1)
+        {
+            for (int j = 0; j < w; j++)
+            {
+                lastRow[j] = thisRow[j];
             }
         }
     }
