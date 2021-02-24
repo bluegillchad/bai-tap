@@ -24,21 +24,11 @@ int main() {
                 if (grid == 'R') nextCheckRow[j] = false;
                 else
                 {
-                    if (j == 0)
-                    {
-                        if (checkRow[j] || checkRow[j+1]) nextCheckRow[j] = true;
-                        else nextCheckRow[j] = false;
-                    }
-                    else if (j == w - 1)
-                    {
-                        if (checkRow[j] || checkRow[j-1]) nextCheckRow[j] = true;
-                        else nextCheckRow[j] = false;
-                    }
-                    else
-                    {
-                        if (checkRow[j-1] || checkRow[j] || checkRow[j+1]) nextCheckRow[j] = true;
-                        else nextCheckRow[j] = false;
-                    }
+                    int chk1 = j - 1, chk2 = j + 1;
+                    if (chk1 < 0) chk1++;
+                    if (chk2 > w - 1) chk2--;
+                    if (checkRow[chk1] || checkRow[j] || checkRow[chk2]) nextCheckRow[j] = true;
+                    else nextCheckRow[j] = false;
                 }
             }
         }
